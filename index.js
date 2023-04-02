@@ -38,11 +38,10 @@ app.post('/api/registerMessage', (req, res) => {
   });
 });
 
-app.get('/api/messages/:recipient', (req, res) => {
-  const { recipient } = req.params;
-  console.log(recipient);
+app.get('/api/messages/:sender', (req, res) => {
+  const { sender } = req.params;
   const sql = 'SELECT * FROM messages WHERE recipient = ?';
-  db.query(sql, recipient, (err, result) => {
+  db.query(sql, sender, (err, result) => {
     if (err) {
       return res.status(500).send('Error getting messages');
     } else {
